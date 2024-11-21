@@ -54,7 +54,7 @@ const Metronome = () => {
   };
 
   return (
-    <div class="metronome" style={{ textAlign: 'center', padding: '20px', 'background': 'darkcyan', 'width': '50%', 'margin': 'auto' }}>
+    <div class="metronome">
       <h1>MyMetronome</h1>
 
       {/* BPM Display and Slider */}
