@@ -2,10 +2,18 @@
   text-align: center;
 }
 
-.metronome {
+.Metronome {
   text-align: center;
   padding: 20px;
   background: #cbcbcb;
   width: 50%;
   margin: auto; 
 }
+
+.Beat {
+  width: 20px !important;
+  height: 25px;
+  background-color: #3498db;
+  border-radius: 50%;
+}
+
