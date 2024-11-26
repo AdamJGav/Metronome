@@ -8,8 +8,9 @@ const Metronome = () => {
   const [bpm, setBpm] = useState(100); // Default BPM
   const [isRunning, setIsRunning] = useState(false); // Track if the metronome is running
   const intervalRef = useRef(null); // Reference to store the interval ID
-  let beatNumber = useRef(0);
-  let totalBeats = useRef(4);
+  //useState on beatNumber so it can change in child component
+  let [beatNumber, setBeatNumber] = useState(1);
+  let [totalBeats, setTotalBeats] = useState(4);
 
   // Calculate the interval time in milliseconds
   let intervalTime = 60000 / bpm;
@@ -40,7 +41,7 @@ const Metronome = () => {
     const newBpm = event.target.value;
     setBpm(newBpm);
     intervalTime = 60000 / newBpm;
-    beatNumber = 1;
+    setBeatNumber(1);
 
     // If the metronome is running, reset the interval with the new BPM
     if (isRunning) {
@@ -50,9 +51,15 @@ const Metronome = () => {
   };
 
   const startTickLoop = () => {
+    setBeatNumber(1);
+    let sound = 'TICK';
     intervalRef.current = setInterval(() => {
-      beatNumber = beatNumber < 4 ? beatNumber+1 : 1;
-      let sound = beatNumber === 1 ? 'TICK' : 'tick';
+      setBeatNumber(prevBeatNumber => {
+        // Use the previous state value to calculate the next beat
+        const nextBeat = prevBeatNumber < 4 ? prevBeatNumber + 1 : 1;
+        sound = nextBeat === 1 ? 'TICK' : 'tick';
+        return nextBeat
+      });
       console.log(sound)
       // beepSound.play().catch((error) => {
       //   console.log("Audio play failed:", error);
@@ -68,12 +75,13 @@ const Metronome = () => {
       <div class="container">
         <div class="row py-3 d-inline-flex position-relative">
           {
-            Array.from({ length: totalBeats.current }, (_, index) => (
-              <Beat key={index} index={index}></Beat>
+            Array.from({ length: totalBeats }, (_, index) => (
+              <Beat key={index} index={index} beatNumber={beatNumber}></Beat>
             ))
           }
         </div>
         <h3>BPM: {bpm}</h3>
+        {/* <h3>Beat Num: {beatNumber}</h3> */}
         <div class="w-75 d-inline-flex position-relative">
         <input
           class="form-range"
