@@ -10,20 +10,19 @@ const Metronome = () => {
   const intervalRef = useRef(null); // Reference to store the interval ID
   //useState on beatNumber so it can change in child component
   let [beatNumber, setBeatNumber] = useState(0);
+  // Can introduce ability to change totalBeats allowing for different time signatures
   let [totalBeats, setTotalBeats] = useState(4);
 
   // Calculate the interval time in milliseconds
   let intervalTime = 60000 / bpm;
 
-  // Start the metronome
   const startMetronome = () => {
     if (isRunning) return; // Prevent starting multiple times
 
     setIsRunning(true);
     startTickLoop()
-  };
+  };  
 
-  // Stop the metronome
   const stopMetronome = () => {
     clearInterval(intervalRef.current);
     setIsRunning(false);
@@ -55,20 +54,19 @@ const Metronome = () => {
     let sound = beatNumber === 1 ? 'TICK' : 'tick';
     if (isRunning) {
       console.log('play', sound);
+      //TODO: Get sound files for audio
+      // beepSound.play().catch((error) => {
+      //   console.log("Audio play failed:", error);
+      // });
     }
-
-    // beepSound.play().catch((error) => {
-    //   console.log("Audio play failed:", error);
-    // });
   }, [beatNumber]);
 
   const startTickLoop = () => {
     setBeatNumber(1);
-    let sound = 'TICK';
     intervalRef.current = setInterval(() => {
       setBeatNumber(prevBeatNumber => {
         // Use the previous state value to calculate the next beat
-        let nextBeat = prevBeatNumber < 4 ? prevBeatNumber + 1 : 1;
+        let nextBeat = prevBeatNumber < totalBeats ? prevBeatNumber + 1 : 1;
         return nextBeat
       });
     }, intervalTime);
