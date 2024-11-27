@@ -89,23 +89,23 @@ const Metronome = () => {
         </div>
         <h3>BPM: {bpm}</h3>
         <div class="w-75 d-inline-flex position-relative">
-        <input
-          class="form-range"
-          type="range"
-          min="40"
-          max="218"
-          step="1"
-          value={bpm}
-          onChange={handleBpmChange}
-        />
+          <input
+            class="form-range pt-1"
+            type="range"
+            min="40"
+            max="218"
+            step="1"
+            value={bpm}
+            onChange={handleBpmChange}
+          />
         </div>
       </div>
 
       {/* Start/Stop Button */}
-      <div>
-        <button onClick={isRunning ? stopMetronome : startMetronome}>
-          {isRunning ? 'Stop' : 'Start'}
-        </button>
+      <div className="pt-3 d-flex justify-content-center">
+        <div onClick={isRunning ? stopMetronome : startMetronome}
+          className={` ${isRunning ? 'stop' : 'play'}`}>
+        </div>
       </div>
     </div>
   );

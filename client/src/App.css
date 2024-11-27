@@ -17,3 +17,18 @@
   border-radius: 50%;
 }
 
+.play {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 30px solid green;
+  background-color: transparent;
+}
+
+.stop {
+  width: 40px;
+  height: 40px;
+  background-color: red;
+}
+
