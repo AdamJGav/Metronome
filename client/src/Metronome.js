@@ -86,7 +86,7 @@ const Metronome = () => {
           }
         </div>
         <h3>BPM: {bpm}</h3>
-        <div class="w-75 d-inline-flex position-relative">
+        <div class="d-inline-flex position-relative slider">
           <input
             class="form-range pt-1"
             type="range"
