@@ -77,8 +77,8 @@ const Metronome = () => {
       <h1>MyMetronome</h1>
 
       {/* BPM Display and Slider */}
-      <div class="container">
-        <div class="row py-3 d-inline-flex position-relative">
+      <div className="container">
+        <div className="row py-3 d-inline-flex position-relative">
           {
             Array.from({ length: totalBeats }, (_, index) => (
               <Beat key={index} index={index} beatNumber={beatNumber}></Beat>
@@ -86,9 +86,9 @@ const Metronome = () => {
           }
         </div>
         <h3>BPM: {bpm}</h3>
-        <div class="d-inline-flex position-relative slider">
+        <div className="d-inline-flex position-relative slider">
           <input
-            class="form-range pt-1"
+            className="form-range pt-1"
             type="range"
             min="40"
             max="218"
