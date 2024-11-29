@@ -36,3 +36,9 @@
   width: 60% !important;
 }
 
+@media (max-width: 500px) {
+  .Metronome {
+    width: 60%;
+  }
+}
+
